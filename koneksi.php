@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";     // default user XAMPP
 $pass = "";         // default kosong di XAMPP
-$db   = "ilab";     // nama database kamu
+$db   = "jadwal_lab";     // nama database kamu
 
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -61,10 +61,6 @@ $query = "SELECT jadwal.mapel, jadwal.jam_mulai, jadwal.jam_selesai, guru.nama, 
 $result = mysqli_query($conn, $query);
 $jadwalAktif = mysqli_fetch_assoc($result);
 
-// =======================
-// 5. Cek istirahat
-// =======================
-// contoh: istirahat jam 12:00–12:30
 $sedangIstirahat = false;
 if ($jamH == 12 && $menit < 30) {
     $sedangIstirahat = true;

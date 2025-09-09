@@ -15,12 +15,13 @@ function updateClock() {
   document.getElementById("clock").innerHTML =
     hours + ":" + minutes + ":" + seconds;
 
+  document.getElementById("clock-overlay").innerHTML =
+    hours + ":" + minutes + ":" + seconds;
+
   let options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
   let tanggalStr = now.toLocaleDateString("id-ID", options);
   document.getElementById("tanggal").innerHTML = tanggalStr;
 
-  // cek istirahat ke-2 langsung di sini juga
-  cekJamIstirahat(now);
 }
 
 

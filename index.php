@@ -49,9 +49,8 @@ include 'koneksi.php';
       Browser kamu tidak mendukung video.
     </video>
     <div class="info">
-      <h2>Sedang Istirahat</h2>
-      <div id="tanggal"></div>
-      <div id="clock"></div>
+      <div id="clock-overlay"></div>
+      <h2 class="istirahat">Sedang Istirahat</h2>
     </div>
   </div>
 <?php } ?>
