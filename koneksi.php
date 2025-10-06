@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "root";     // default user XAMPP
-$pass = "";         // default kosong di XAMPP
-$db   = "jadwal_lab";     // nama database kamu
+$user = "root";     
+$pass = "";        
+$db   = "jadwal_lab";     
 
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -10,34 +10,27 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// =======================
-// 1. Atur zona waktu
-// =======================
+
 date_default_timezone_set('Asia/Jakarta');
 
-// =======================
-// 2. Tentukan apakah pakai mock time
-// =======================
-// kalau mau test waktu custom, tambahin ?mock=2025-09-02+08:00 di URL
+
+// ?mock=2025-09-02+08:00 di URL
 $mock = $_GET['mock'] ?? null;
 
 if ($mock) {
-    // pakai waktu custom dari URL
+    
     $now = new DateTime($mock);
 } else {
-    // pakai waktu asli server
+   
     $now = new DateTime("now");
 }
 
-// =======================
-// 3. Ambil data waktu
-// =======================
-$hari = $now->format("l");      // contoh: Monday, Tuesday
+$hari = $now->format("l");     
 $jamSekarang = $now->format("H:i");
-$jamH = (int)$now->format("H"); // jam (00–23)
+$jamH = (int)$now->format("H"); 
 $menit = (int)$now->format("i");
 
-// mapping bahasa Inggris ke Indonesia
+
 $mapHari = [
   "Monday" => "Senin",
   "Tuesday" => "Selasa",
@@ -49,9 +42,7 @@ $mapHari = [
 ];
 $hariIndo = $mapHari[$hari];
 
-// =======================
-// 4. Ambil jadwal dari DB sesuai hari & jam
-// =======================
+
 $query = "SELECT jadwal.mapel, jadwal.jam_mulai, jadwal.jam_selesai, guru.nama, guru.foto 
           FROM jadwal
           INNER JOIN guru ON jadwal.guru_id = guru.id
